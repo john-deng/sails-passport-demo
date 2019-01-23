@@ -9,6 +9,10 @@
  * https://sailsjs.com/config/http
  */
 
+var session = require('express-session');
+var bodyParser = require('body-parser');
+var MemoryStore = require('session-memory-store')(session);
+
 module.exports.http = {
 
   /****************************************************************************
@@ -21,21 +25,29 @@ module.exports.http = {
   ****************************************************************************/
 
   middleware: {
-  /***************************************************************************
-  *                                                                          *
-  * Initialise for both passport and passport-local                          *
-  *                                                                          *
-  * https://sailsjs.com/config/http#?customizing-the-body-parser             *
-  *                                                                          *
-  ***************************************************************************/
-  
- passportInit    : (function (){
-    return require('passport').initialize();
-  })(),
+    /***************************************************************************
+    *                                                                          *
+    * Initialise for both passport and passport-local                          *
+    *                                                                          *
+    * https://sailsjs.com/config/http#?customizing-the-body-parser             *
+    *                                                                          *
+    ***************************************************************************/
+    passportInit    : (function (){
+      return require('passport').initialize();
+    })(),
 
-  passportSession : (function (){
-    return require('passport').session();
-  })(),
+    passportSession : (function (){
+      return require('passport').session();
+    })(),
+    bodyParser: bodyParser.json(),
+    bodyParserEncoded: bodyParser.urlencoded({ extended: true }),
+    session: session({
+      name: 'NSESSIONID',
+      secret: 'long long long secret for joinin',
+      resave: true,
+      saveUninitialized: true,
+      store: new MemoryStore()  // or other session store
+    }),
     /***************************************************************************
     *                                                                          *
     * The order in which middleware should be run for HTTP requests.           *
@@ -49,6 +61,7 @@ module.exports.http = {
       'passportInit',
       'passportSession',
       'bodyParser',
+      'bodyParserEncoded',
       'compress',
       'poweredBy',
       'router',

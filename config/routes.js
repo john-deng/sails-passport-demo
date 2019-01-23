@@ -51,6 +51,9 @@ module.exports.routes = {
   //  ╠═╣╠═╝║  ║╣ ║║║ ║║╠═╝║ ║║║║║ ║ ╚═╗
   //  ╩ ╩╩  ╩  ╚═╝╝╚╝═╩╝╩  ╚═╝╩╝╚╝ ╩ ╚═╝
   'post /login': 'AuthController.login',
+  'get /casLogin': 'AuthController.casLogin',
+  'get /cas/validate': 'AuthController.casLogin',
+  'get /cas/serviceValidate': 'AuthController.casLogin',
   'post /register': 'AuthController.register',
   '/logout': 'AuthController.logout',
 };
