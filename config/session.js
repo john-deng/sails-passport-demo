@@ -38,7 +38,7 @@ module.exports.session = {
   // },
   adapter: 'connect-mongo',
 	// Note: user, pass and port are optional
-  url: 'mongodb://' + process.env.MONGO_LOG + ':27017/sails-passport-demo',
+  url: 'mongodb://' + process.env.MONGO_USER + ':' + process.env.MONGO_PWD + '@' + process.env.MONGO_LOG + ':27017/sails-passport-demo'，
 	collection: 'sessions',
 	auto_reconnect: false,
 	ssl: false,
