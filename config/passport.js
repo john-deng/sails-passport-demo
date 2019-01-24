@@ -59,11 +59,7 @@ passport.use(new LocalStrategy({
 var servicePrefix = process.env.SVC_PREFIX || 'http://localhost:3000';
 var serverPath = process.env.SERVER_PATH || 'http://localhost:8080';
 var options = {
-  ignore: [
-    /^\/$/,
-    /\/(explore|login|logout)$/,
-    /\..*$/
-  ],
+  ignore: [],
   match: [],
   servicePrefix:  servicePrefix,
   serverPath: serverPath,
