@@ -9,9 +9,7 @@
  * https://sailsjs.com/config/http
  */
 
-var session = require('express-session');
 var bodyParser = require('body-parser');
-var MemoryStore = require('session-memory-store')(session);
 
 module.exports.http = {
 
@@ -41,13 +39,11 @@ module.exports.http = {
     })(),
     bodyParser: bodyParser.json(),
     bodyParserEncoded: bodyParser.urlencoded({ extended: true }),
-    session: session({
-      name: 'NSESSIONID',
-      secret: 'long long long secret for joinin',
-      resave: true,
-      saveUninitialized: true,
-      store: new MemoryStore()  // or other session store
-    }),
+    fileMiddleware: (function () {
+      const multer = require('multer');
+      const upload = multer();
+      return upload.fields([{ name: 'images' }, { name: 'profile' }, { name: 'cover' }, { name: 'avatar' }]);
+    })(),
     /***************************************************************************
     *                                                                          *
     * The order in which middleware should be run for HTTP requests.           *
@@ -62,6 +58,7 @@ module.exports.http = {
       'passportSession',
       'bodyParser',
       'bodyParserEncoded',
+      'fileMiddleware',
       'compress',
       'poweredBy',
       'router',

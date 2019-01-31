@@ -23,6 +23,8 @@ module.exports.routes = {
   ***************************************************************************/
 
   '/': 'DashboardController.renderIndex',
+  '/file/index': 'FileController.index',
+  'post /file/upload': 'FileController.upload',
 
   '/explore': {
     view: 'pages/explore' 

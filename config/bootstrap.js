@@ -26,5 +26,5 @@ module.exports.bootstrap = async function() {
   //   // etc.
   // ]);
   // ```
-
+  sails.moment = require('moment');
 };
