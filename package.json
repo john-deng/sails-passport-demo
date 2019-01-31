@@ -9,7 +9,6 @@
     "@sailshq/lodash": "^3.10.3",
     "@sailshq/socket.io-redis": "^5.2.0",
     "bcrypt-nodejs": "0.0.3",
-    "connect-busboy": "0.0.2",
     "connect-cas2": "^1.2.5",
     "connect-mongo": "^2.0.3",
     "grunt": "1.0.1",
