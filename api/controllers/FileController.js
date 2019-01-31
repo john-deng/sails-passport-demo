@@ -5,6 +5,9 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 var fs = require('fs');
+var path = require('path')
+const uuidv3 = require('uuid');
+const MY_NAMESPACE = '1b671a64-40d5-491e-99b0-da01ff1f3342';
 
 module.exports = {
   index: function (req, res) {
@@ -28,9 +31,10 @@ module.exports = {
       if (!fs.existsSync(savePath)) {
         fs.mkdirSync(savePath);
       }
-      fs.writeFile(savePath + file.originalname, file.buffer, function (err) {
+      var filename = uuidv3(file.originalname, MY_NAMESPACE) + path.extname(file.originalname);
+      fs.writeFile(savePath + filename, file.buffer, function (err) {
         if (err) throw err;
-        console.log('saved!');
+        console.log('Uploaded ' + savePath + filename);
       });
     }
   }

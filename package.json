@@ -24,7 +24,8 @@
     "sails-hook-orm": "^2.1.1",
     "sails-hook-sockets": "^1.5.5",
     "sails-mongo": "^1.0.1",
-    "session-memory-store": "^0.2.2"
+    "session-memory-store": "^0.2.2",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "@sailshq/eslint": "^4.19.3"
